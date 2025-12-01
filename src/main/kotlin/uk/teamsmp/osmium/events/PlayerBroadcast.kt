@@ -12,7 +12,7 @@ import uk.teamsmp.osmium.database.executeUpdate
 class PlayerBroadcast(val plugin: Osmium) : Listener {
     @EventHandler
     fun onPlayerJoin(event: PlayerJoinEvent) {
-        val players = Bukkit.getOnlinePlayers().size
+        val players = Bukkit.getOnlinePlayers().size + 1
         Database.getConnection().executeUpdate("UPDATE servers SET players = ? WHERE name = ?", this.plugin.players, this.plugin.osmserver)
     }
 

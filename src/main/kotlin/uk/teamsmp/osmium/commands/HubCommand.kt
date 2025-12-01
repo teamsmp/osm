@@ -15,11 +15,11 @@ class HubCommand(val plugin: Osmium) : CommandExecutor, TabCompleter {
         sender: CommandSender,
         command: Command,
         label: String,
-        args: Array<String>
+        args: Array<out String>
     ): Boolean {
         if (sender is Player) {
             if (args.isEmpty()) {
-                sender.sendMessage(mm.deserialize("${Osmium.prefix} <red>Invalid usage!</red> <gray>Try <yellow>/hub [a|b]<gray>."))
+                plugin.path(sender, "hub-a")
                 return true
             }
             val servers = listOf<String>("hub-a", "hub-b")
@@ -39,7 +39,7 @@ class HubCommand(val plugin: Osmium) : CommandExecutor, TabCompleter {
         sender: CommandSender,
         command: Command,
         label: String,
-        args: Array<String>
+        args: Array<out String>
     ): List<String> {
         if (args.isNotEmpty() && args.size == 1) {
             return listOf("a", "b")
