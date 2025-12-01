@@ -1,0 +1,29 @@
+name: osmium
+version: '1.0-SNAPSHOT'
+main: uk.teamsmp.osmium.Osmium
+api-version: '1.21'
+
+commands:
+  osm:
+    description: "The main command to control osmium."
+    usage: "/osm <subcommand>"
+    aliases:
+      - osmium
+      - servermanager
+      - tv
+      - proxy
+  hub:
+    description: "Go to the Hub"
+    usage: "/hub [a|b]"
+    aliases:
+      - lobby
+  path:
+    description: "Path to any server"
+    usage: "/path <server>"
+    aliases:
+      - goto
+      - route
+
+permissions:
+  osm.server.set:
+    description: "Set server marks with /osm set"
