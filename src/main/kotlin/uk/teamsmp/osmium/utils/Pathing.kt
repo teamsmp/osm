@@ -8,7 +8,7 @@ import uk.teamsmp.osmium.database.executeQuery
 
 fun Osmium.path(player: Player, server: String, messages: Boolean = true): Boolean {
     if (this.osmserver == server) {
-        if (messages) player.sendMessage(Osmium.mm.deserialize("${Osmium.prefix} <red>You are already connected to <gold>${this.osmserver}<red>!"))
+        if (messages) player.sendMessage(Osmium.mm.deserialize("${Osmium.PREFIX} <red>You are already connected to <gold>${this.osmserver}<red>!"))
         return true
     }
 
@@ -32,7 +32,7 @@ fun Osmium.path(player: Player, server: String, messages: Boolean = true): Boole
             // If the server is down, offline, or flagged, and it's not 'hub-a', show the appropriate message
             "closed" -> {
                 if (player.hasPermission("osm.bypassDown")) {
-                    player.sendMessage(Osmium.mm.deserialize("${Osmium.prefix} You have bypassed the <yellow>down</yellow> mark on <gold>$server</gold>."))
+                    player.sendMessage(Osmium.mm.deserialize("${Osmium.PREFIX} You have bypassed the <yellow>down</yellow> mark on <gold>$server</gold>."))
                     player.sendPluginMessage(this, "BungeeCord", out.toByteArray())
                     true
                 } else if (server == "hub-a") {
@@ -59,9 +59,9 @@ fun Osmium.path(player: Player, server: String, messages: Boolean = true): Boole
 
 fun Osmium.handleServerDown(player: Player, server: String, messages: Boolean, mark: String): Boolean {
     val message = when (mark) {
-        "closed", "down" -> "${Osmium.prefix} <red>At the moment, <gold>$server<red> is not available. This is probably due to planned maintenance."
-        "stopped" -> "${Osmium.prefix} <red>At the moment, <gold>$server<red> is offline. Please try again in a minute"
-        "flag" -> "${Osmium.prefix} <gold>$server<red> is currently offline for an unknown reason! This is likely because of a crash - contact an Admin!"
+        "closed", "down" -> "${Osmium.PREFIX} <red>At the moment, <gold>$server<red> is not available. This is probably due to planned maintenance."
+        "stopped" -> "${Osmium.PREFIX} <red>At the moment, <gold>$server<red> is offline. Please try again in a minute"
+        "flag" -> "${Osmium.PREFIX} <gold>$server<red> is currently offline for an unknown reason! This is likely because of a crash - contact an Admin!"
         else -> null
     }
 

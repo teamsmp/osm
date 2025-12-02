@@ -28,7 +28,7 @@ class HubCommand(val plugin: Osmium) : CommandExecutor, TabCompleter {
                 if (servers.contains("hub-" + args[0])) {
                     plugin.path(sender, "hub-" + args[0])
                 } else {
-                    sender.sendMessage(mm.deserialize("${Osmium.prefix} <red>Server <gold>${"hub-" + args[0]}<red> does not exist!"))
+                    sender.sendMessage(mm.deserialize("${Osmium.PREFIX} <red>Server <gold>${"hub-" + args[0]}<red> does not exist!"))
                 }
             }
         }

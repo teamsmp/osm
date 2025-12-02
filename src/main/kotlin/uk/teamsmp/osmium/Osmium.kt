@@ -5,6 +5,7 @@ import net.kyori.adventure.text.minimessage.MiniMessage
 import uk.teamsmp.osmium.commands.*
 import uk.teamsmp.osmium.database.Database
 import uk.teamsmp.osmium.events.AutodownListener
+import uk.teamsmp.osmium.events.DiscordListener
 import uk.teamsmp.osmium.events.PlayerBroadcast
 
 class Osmium : JavaPlugin() {
@@ -13,7 +14,7 @@ class Osmium : JavaPlugin() {
 
     companion object {
         val mm = MiniMessage.miniMessage()
-        val prefix = "<dark_gray>[<gradient:aqua:dark_purple><b>OSM</b><dark_gray>]<reset>"
+        const val PREFIX = "<dark_gray>[<gradient:aqua:dark_purple><b>OSM</b><dark_gray>]<reset>"
     }
 
     override fun onEnable() {
@@ -29,9 +30,11 @@ class Osmium : JavaPlugin() {
         Database.init(config, this@Osmium)
 
         server.pluginManager.registerEvents(AutodownListener(this@Osmium), this)
-        logger.info("Registered AutodownListener event.")
+        logger.info("Registered AutodownListener listener.")
         server.pluginManager.registerEvents(PlayerBroadcast(this@Osmium), this)
-        logger.info("Registered PlayerBroadcast event.")
+        logger.info("Registered PlayerBroadcast listener.")
+        server.pluginManager.registerEvents(DiscordListener(this@Osmium), this)
+        logger.info("Registered DiscordListener listener.")
 
         getCommand("osm")?.apply {
             val cmd = OsmCommand(this@Osmium)
@@ -52,9 +55,15 @@ class Osmium : JavaPlugin() {
             setExecutor(cmd)
             tabCompleter = cmd
         }
+
+        getCommand("discord")?.apply {
+            val cmd = DiscordCommand(this@Osmium)
+            setExecutor(cmd)
+            tabCompleter = cmd
+        }
     }
 
     override fun onDisable() {
-        // Plugin shutdown logic
+        Database.close()
     }
 }

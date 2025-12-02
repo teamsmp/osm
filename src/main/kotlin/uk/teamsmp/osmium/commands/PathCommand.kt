@@ -21,7 +21,7 @@ class PathCommand(val plugin: Osmium) : CommandExecutor, TabCompleter {
     ): Boolean {
         if (sender is Player) {
             if (args.isEmpty()) {
-                sender.sendMessage(mm.deserialize("${Osmium.prefix} <red>Invalid usage!</red> <gray>Try <yellow>/path <server><gray>."))
+                sender.sendMessage(mm.deserialize("${Osmium.PREFIX} <red>Invalid usage!</red> <gray>Try <yellow>/path <server><gray>."))
                 return true
             }
             val query = Database.getConnection().executeQuery("SELECT name FROM servers")
@@ -34,7 +34,7 @@ class PathCommand(val plugin: Osmium) : CommandExecutor, TabCompleter {
                 if (servers.contains(args[0])) {
                     plugin.path(sender, args[0])
                 } else {
-                    sender.sendMessage(mm.deserialize("${Osmium.prefix} <red>Server <gold>${args[0]}<red> does not exist!"))
+                    sender.sendMessage(mm.deserialize("${Osmium.PREFIX} <red>Server <gold>${args[0]}<red> does not exist!"))
                 }
             }
         }

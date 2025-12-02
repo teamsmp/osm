@@ -23,6 +23,12 @@ commands:
     aliases:
       - goto
       - route
+  discord:
+    description: "Display Discord server link"
+    usage: "/discord"
+    aliases:
+      - dc
+      - discordserver
 
 permissions:
   osm.server.set:
